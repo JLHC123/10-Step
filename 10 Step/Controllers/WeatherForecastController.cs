@@ -1,5 +1,6 @@
 // Jorge Hernandez Cruz
 
+using _10_Step.Data;
 using Microsoft.AspNetCore.Mvc;
 using System.Data.SqlClient;
 
@@ -55,6 +56,21 @@ namespace _10_Step.Controllers
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+        [HttpGet("test-EF-connection")]
+        public IActionResult TestEFConnection()
+        {
+            MyContext _context = new MyContext();
+            if (_context.Database.CanConnect())
+            {
+                return Ok("Database connected!");
+            }
+            else
+            {
+                return StatusCode(500, "Database not connected");
+            }    
+
         }
     }
 }
