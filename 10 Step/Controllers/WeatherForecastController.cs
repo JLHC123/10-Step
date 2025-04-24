@@ -90,5 +90,14 @@ namespace _10_Step.Controllers
             _context.SaveChanges();
             return Ok();
         }
+
+        [HttpDelete("Delete User")]
+        public IActionResult DeleteUser(User user)
+        {
+            MyContext _context = new MyContext();
+            _context.user.Remove(user);
+            _context.SaveChanges();
+            return Ok();
+        }
     }
 }
