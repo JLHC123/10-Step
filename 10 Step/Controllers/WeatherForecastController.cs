@@ -1,6 +1,7 @@
 // Jorge Hernandez Cruz
 
 using Microsoft.AspNetCore.Mvc;
+using System.Data.SqlClient;
 
 namespace _10_Step.Controllers
 {
@@ -36,6 +37,24 @@ namespace _10_Step.Controllers
         public IActionResult HelloWorld()
         {
             return Ok("Hello World");
+        }
+
+        public string connectionString = "Data Source=CS-19;Initial Catalog=Testable;Integrated Security=True;Connect Timeout=30;Encrypt=True;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+
+        [HttpGet("test-connection")]
+        public IActionResult Connection()
+        {
+            try
+            {
+                using var connection = new SqlConnection(connectionString);
+                connection.Open();
+
+                return Ok("Connection successful!");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
