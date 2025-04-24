@@ -31,5 +31,11 @@ namespace _10_Step.Controllers
             })
             .ToArray();
         }
+
+        [HttpGet("Hello World")]
+        public IActionResult HelloWorld()
+        {
+            return Ok("Hello World");
+        }
     }
 }
