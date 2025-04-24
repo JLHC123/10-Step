@@ -72,5 +72,13 @@ namespace _10_Step.Controllers
             }    
 
         }
+
+        [HttpGet("Get Users")]
+        public IActionResult GetUsers()
+        {
+            MyContext _context = new MyContext();
+            var users = _context.user.ToList();
+            return Ok(users);
+        }
     }
 }

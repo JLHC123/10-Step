@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using _10_Step.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
 
 namespace _10_Step.Data
@@ -12,5 +13,7 @@ namespace _10_Step.Data
         {
             optionsBuilder.UseSqlServer(ConnectionString);
         }
+
+        public DbSet<User> user { get; set; }
     }
 }
