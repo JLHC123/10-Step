@@ -11,45 +11,6 @@ namespace _10_Step.Controllers
     [Route("[controller]")]
     public class UserController : ControllerBase
     {
-        [HttpGet("Hello World")]
-        public IActionResult HelloWorld()
-        {
-            return Ok("Hello World");
-        }
-
-        public string connectionString = "Data Source=CS-19;Initial Catalog=Testable;Integrated Security=True;Connect Timeout=30;Encrypt=True;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-
-        [HttpGet("test-connection")]
-        public IActionResult Connection()
-        {
-            try
-            {
-                using var connection = new SqlConnection(connectionString);
-                connection.Open();
-
-                return Ok("Connection successful!");
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        [HttpGet("test-EF-connection")]
-        public IActionResult TestEFConnection()
-        {
-            MyContext _context = new MyContext();
-            if (_context.Database.CanConnect())
-            {
-                return Ok("Database connected!");
-            }
-            else
-            {
-                return StatusCode(500, "Database not connected");
-            }    
-
-        }
-
         [HttpGet("Get Users")]
         public IActionResult GetUsers()
         {
